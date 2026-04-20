@@ -4,6 +4,8 @@
 \usetheme{Warsaw}
 \useoutertheme[subsection=false]{smoothbars}
 
+\usepackage{tikz}
+\usepackage{makecell}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{tabularx}
@@ -33,13 +35,18 @@
 \setbeamercolor{block body}{bg=UMGreenLight}
 \setbeamercolor{structure}{fg=black}
 
+% \setbeamercolor{frametitle}{fg=white,bg=UMGreenDark}
+
 \setbeamertemplate{footline}[frame number]
 
 % Title info
 \title{Toward Vision-Guided Pick-and-Place for Tabletop Humanoid Manipulation}
-\author{Dewan Tauhid Rahman}
+% \author{Dewan Tauhid Rahman}
+\author{Dewan Tauhid Rahman\\[0.3em]\small Advisor: Dr.\ Ubbo Visser}
+
 \institute{Department of Computer Science \\ University of Miami}
-\date{\today}
+\date{}
+\titlegraphic{\includegraphics[height=1.5cm]{assets/robocanes-logo.png}}
 
 \begin{document}
 
@@ -353,16 +360,11 @@ Develop an incremental semantic segmentation module that can learn new object cl
 % ------------------------------------------------
 \section{Results and Current Status}
 
-
-
-
-
-
-\begin{frame}{Results: Manipulation Track}
+\begin{frame}{Results: Manipulation Study}
 \begin{columns}[T,onlytextwidth]
     \begin{column}{0.35\textwidth}
         \centering
-        \href{https://drive.google.com/file/d/1yZajnml0tAtpSdHr2Z89NWnPK8RlsCV-/view?usp=sharing}{%
+        \href{https://www.youtube.com/watch?v=UZ0BYGIusWQ}{%
             \includegraphics[width=\linewidth]{assets/manual-manipulation-thumbnail.png}
         }
         {\small \textbf{Manual Pick-and-Place Demo}}
@@ -371,7 +373,7 @@ Develop an incremental semantic segmentation module that can learn new object cl
 
     \begin{column}{0.35\textwidth}
         \centering
-        \href{https://drive.google.com/file/d/1k3FWhc56OqwbGGPhUJTm9mdixOYO2-Iq/view?usp=sharing}{%
+        \href{https://www.youtube.com/watch?v=h9fQz96zRzo}{%
             \includegraphics[width=\linewidth]{assets/rl-manipulation-thumbnail.png}
         }
         {\small \textbf{RL Training Demo}}
@@ -383,46 +385,7 @@ Develop an incremental semantic segmentation module that can learn new object cl
 \end{frame}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\begin{frame}{Results: Perception Track}
+\begin{frame}{Results: Perception Study}
     \footnotesize
     \centering
     \renewcommand{\arraystretch}{1.15}
@@ -513,79 +476,9 @@ Develop an incremental semantic segmentation module that can learn new object cl
     \end{table}
 
     \vspace{0.1cm}
-    \textbf{Takeaway:} Manipulation is moving from scripted control toward learned execution, while perception has advanced to offline incremental learning and now needs online embodied integration.
+    {\scriptsize \textbf{Takeaway:} Manipulation is moving toward learned control; perception has reached offline incremental learning and now points toward embodied integration.}
 \end{frame}
 
-
-% \begin{frame}{Manipulation Progression}
-% \scriptsize
-% \centering
-% \renewcommand{\arraystretch}{1.3}
-
-% \begin{table}[h]
-% \centering
-% \resizebox{\textwidth}{!}{%
-% \begin{tabular}{l l L{2.3cm} L{2.3cm} L{2.3cm} L{2.3cm} L{2.3cm}}
-% \toprule
-% \textbf{Domain} & \textbf{Capability} & \textbf{Level 0} & \textbf{Level 1} & \textbf{Level 2} & \textbf{Level 3} & \textbf{Level 4} \\
-% & & \textit{(Hard-coded)} & \textit{(Reactive)} & \textit{(Adaptive)} & \textit{(Autonomous)} & \textit{(Dynamic)} \\
-% \midrule
-% \textbf{Manipulation} & \textbf{Grasp Planning}
-% & None
-% & \cellcolor{blue!10}Model-based (Stage 2)
-% & \cellcolor{blue!25}Model-free isolated (Stage 3)
-% & Model-free cluttered
-% & Articulated / deformable \\
-
-% & \textbf{Execution}
-% & \cellcolor{gray!20}Hard-coded (Stage 1)
-% & Reactive single-modal
-% & \cellcolor{blue!25}Reactive multimodal (Stage 3)
-% & \cellcolor{blue!40}Autonomous under uncertainty (Target)
-% & Autonomous dynamic \\
-% \bottomrule
-% \end{tabular}%
-% }
-% \end{table}
-
-% \vspace{0.1cm}
-% \textbf{Reading:} The current system moves from a hard-coded baseline toward a model-free RL policy as the next major capability step.
-% \end{frame}
-
-% \begin{frame}{Perception Progression}
-% \scriptsize
-% \centering
-% \renewcommand{\arraystretch}{1.3}
-
-% \begin{table}[h]
-% \centering
-% \resizebox{\textwidth}{!}{%
-% \begin{tabular}{l l L{2.35cm} L{2.35cm} L{2.35cm} L{2.35cm} L{2.35cm}}
-% \toprule
-% \textbf{Domain} & \textbf{Capability} & \textbf{Level 0} & \textbf{Level 1} & \textbf{Level 2} & \textbf{Level 3} & \textbf{Level 4} \\
-% & & \textit{(Static)} & \textit{(Offline Incremental)} & \textit{(Retention-Aware)} & \textit{(Online Adaptive)} & \textit{(Embodied Continual)} \\
-% \midrule
-% \textbf{Perception} & \textbf{Object Knowledge}
-% & Fixed class set
-% & \cellcolor{blue!10}Offline class-incremental updates
-% & \cellcolor{blue!25}LoRA + distillation retention
-% & Online novel-class expansion
-% & Continual open-world object learning \\
-
-% & \textbf{System Integration}
-% & Standalone segmentation
-% & Dataset-level evaluation
-% & \cellcolor{blue!25}Incremental method comparison
-% & On-robot perception updates
-% & \cellcolor{blue!40}Perception-action integration (Target) \\
-% \bottomrule
-% \end{tabular}%
-% }
-% \end{table}
-
-% \vspace{0.1cm}
-% \textbf{Reading:} The current perception system has moved beyond static segmentation into offline incremental learning, with LoRA + distillation as the strongest retention-aware baseline.
-% \end{frame}
 
 \begin{frame}{Next Steps}
 \begin{itemize}
@@ -615,9 +508,9 @@ Develop an incremental semantic segmentation module that can learn new object cl
 \bibliography{references}
 \end{frame}
 
-\begin{frame}{Thank You}
+\begin{frame}{}
   \centering
-  \Huge Questions?
+%   \Huge Questions?
+  \includegraphics[height=3.4cm]{assets/thank-u-slide-1.png}
 \end{frame}
-
 \end{document}
